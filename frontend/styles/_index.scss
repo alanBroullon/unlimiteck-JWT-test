@@ -1,0 +1,13 @@
+@import './_colors.scss';
+@import './_variables.scss';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+#app {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    height: 100%;
+}
