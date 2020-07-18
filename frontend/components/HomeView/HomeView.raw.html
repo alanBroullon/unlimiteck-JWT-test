@@ -1,10 +1,5 @@
 <div>
     <Header></Header>
-    <input type="text" placeholder="nombre" v-model="name">
-    <input type="text" placeholder="nota" v-model="note">
-
-    <label for="img">Select image:</label>
-    <input type="file" id="img" name="image" accept="image/*" @change="dataImage">
-    <button @click="uploadImage"> aca</button>
+    <FileUploader></FileUploader>
 
 </div>
