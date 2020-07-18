@@ -1,16 +1,14 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import axios from "axios";
-import Header from "Components/Header";
 import UserTable from "Components/UserTable";
 import FileUploader from "Components/FileUploader";
 import Queries from "GraphQL/queries";
+import axios from "axios";
 
 @Component({
     components: {
-        Header,
         FileUploader,
-        UserTable
+        UserTable,
     }
 })
 export default class HomeView extends Vue {
