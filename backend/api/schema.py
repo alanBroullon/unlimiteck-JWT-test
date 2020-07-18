@@ -107,6 +107,7 @@ class Query(graphene.ObjectType):
     empty = graphene.List(graphene.String)
     users = graphene.List(UserType)
     is_authenticated = graphene.Boolean()
+    user_role = graphene.Field(UserType)
 
     @login_required
     @superuser_required
@@ -115,3 +116,7 @@ class Query(graphene.ObjectType):
 
     def resolve_is_authenticated(self, info):
         return info.context.user.is_authenticated()
+
+    @login_required
+    def resolve_user_role(self, info):
+        return info.context.user

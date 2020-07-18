@@ -6,6 +6,7 @@ import axios from 'axios';
 import Mutations from 'GraphQL/mutations';
 import Queries from "GraphQL/queries";
 import App from "Components/App/";
+import store from "Services/store"
 
 Vue.use(Router);
 
@@ -28,7 +29,7 @@ const AppRouter = new Router({
                     }).then((response) => {
                     if (!response.data.data.isAuthenticated) {
                         next({
-                            name: 'basLogin'
+                            name: 'baseLogin'
                         });
                     }
                     next();
@@ -50,7 +51,7 @@ const AppRouter = new Router({
                         });
                     } else {
                         next({
-                            name: 'basLogin'
+                            name: 'baseLogin'
                         });
                     }
                     next();
@@ -59,6 +60,5 @@ const AppRouter = new Router({
         },
     ]
 });
-
 
 export default AppRouter;
