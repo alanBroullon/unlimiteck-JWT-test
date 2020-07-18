@@ -1,6 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import App from 'Components/App';
+import HomeView from 'Components/HomeView';
+import BaseLogin from 'Components/BaseLogin';
+import axios from 'axios';
+import Mutations from 'GraphQL/mutations';
+import Queries from "GraphQL/queries";
+import App from "Components/App/";
 
 Vue.use(Router);
 
@@ -8,11 +13,52 @@ const AppRouter = new Router({
     mode: 'history',
     routes: [
         {
-            path: '/',
+            path: '/login',
+            name: 'basLogin',
+            component: BaseLogin,
+        },
+        {
+            path: '/home',
             name: 'home',
-            component: App
+            component: HomeView,
+            beforeEnter(to, from, next) {
+                axios.post('/graphql',
+                    {
+                        query: Queries.getIsAuthenticated
+                    }).then((response) => {
+                    if (!response.data.data.isAuthenticated) {
+                        next({
+                            name: 'basLogin'
+                        });
+                    }
+                    next();
+                });
+            },
+        },
+        {
+            path: '/',
+            name: 'app',
+            component: App,
+            beforeEnter(to, from, next) {
+                axios.post('/graphql',
+                    {
+                        query: Queries.getIsAuthenticated
+                    }).then((response) => {
+                    if (response.data.data.isAuthenticated) {
+                        next({
+                            name: 'home'
+                        });
+                    } else {
+                        next({
+                            name: 'basLogin'
+                        });
+                    }
+                    next();
+                });
+            },
         },
     ]
 });
+
 
 export default AppRouter;
