@@ -1,0 +1,9 @@
+<div>
+<div v-for="user in userList">
+    <span>Nombre: {{user.firstName}}</span>
+    <span>apellido: {{user.lastName}}</span>
+    <span>email: {{user.email}}</span>
+    <span v-if="user.isSuperuser">Es super usario</span>
+    <span v-if="user.isStaff">Es staff</span>
+</div>
+</div>
