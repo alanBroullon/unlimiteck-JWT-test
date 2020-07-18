@@ -26,8 +26,6 @@ class UserLoggedType(graphene.ObjectType):
     anonymous_user = graphene.Boolean()
 
     def resolve_anonymous_user(self, info):
-        import ipdb
-        ipdb.set_trace()
         if info.context.user:
             return False
         else:
@@ -105,13 +103,13 @@ class Mutations(graphene.ObjectType):
 
 class Query(graphene.ObjectType):
     empty = graphene.List(graphene.String)
-    users = graphene.List(UserType)
+    all_users = graphene.List(UserType)
     is_authenticated = graphene.Boolean()
     user_role = graphene.Field(UserType)
 
     @login_required
     @superuser_required
-    def resolve_users(self, info, **kwargs):
+    def resolve_all_users(self, info, **kwargs):
         return User.objects.all()
 
     def resolve_is_authenticated(self, info):

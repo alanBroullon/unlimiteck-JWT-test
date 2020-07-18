@@ -13,6 +13,18 @@ const Queries = {
             }
         }
     `,
+    getAllUsers: `
+        query allUsers {
+          allUsers {
+            firstName
+            lastName
+            email
+             isStaff
+             isSuperuser
+           }
+
+        }
+    `,
 };
 
 export default Queries;

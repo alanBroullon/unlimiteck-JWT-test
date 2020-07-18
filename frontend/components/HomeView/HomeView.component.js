@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import axios from "axios";
 import Header from "Components/Header";
+import UserTable from "Components/UserTable";
 import FileUploader from "Components/FileUploader";
 import Queries from "GraphQL/queries";
 
@@ -9,6 +10,7 @@ import Queries from "GraphQL/queries";
     components: {
         Header,
         FileUploader,
+        UserTable
     }
 })
 export default class HomeView extends Vue {
@@ -32,7 +34,8 @@ export default class HomeView extends Vue {
     }
 
     get role() {
-        return this.$store.getters.getUserRole
+        debugger
+        return this.$store.getters.getUserRole;
 
     }
 
