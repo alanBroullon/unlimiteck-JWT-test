@@ -1,6 +1,38 @@
-<div>
-<header>
-    <button @click="logout">Logout</button>
+<div class="header">
+    <header class="">
+        <div class="headerIconsContainer">
+            <div class="burgerIconContainer"
+                 @click="toggleMenu()"
+            >
+                <img src="../../assets/BurguerMenu.svg">
+            </div>
 
-</header>
+        </div>
+        <nav class="headerContainer"
+             :class="{'--active': showMenu}"
+        >
+            <span @click="toggleMenu()"
+                  class="crossIcon">
+                <img class="crossIconContainer"
+                     src="../../assets/cross.svg"
+                >
+            </span>
+            <div class="optionsContainer">
+                <router-link
+                        class="header-action"
+                        to="/"
+                >Home
+                </router-link>
+                <router-link @click.native="toggleMenu()"
+                             class="header-action"
+                             to="/mis-notas">Mis notas
+                </router-link>
+                <router-link @click.native="toggleMenu()"
+                             class="header-action"
+                             to="/lista-de-usuarios">Lista de usuarios
+                </router-link>
+                <button class="button" @click="logout">Logout</button>
+            </div>
+        </nav>
+    </header>
 </div>
