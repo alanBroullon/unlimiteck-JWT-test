@@ -67,7 +67,6 @@ class RegisterMutation(graphene.Mutation):
         fields = graphene.Argument(RegisterFieldsType)
 
     ok = graphene.Boolean()
-    user = graphene.Field(UserType)
     errors = OutputObjectType()
 
     def mutate(self, info, fields):
@@ -83,23 +82,57 @@ class RegisterMutation(graphene.Mutation):
 
 class DeleteUserMutation(graphene.Mutation):
     class Arguments:
-        fields = graphene.Argument(RegisterFieldsType)
+        user_id = graphene.ID()
 
     ok = graphene.Boolean()
-    user = graphene.Field(UserType)
     errors = OutputObjectType()
 
-    def mutate(self, info, fields):
-        form = RegistrationForm(fields)
-        form_valid = form.is_valid()
-        user = None
-        if form_valid:
-            form.save()
-        ok = bool(user and not errors)
-        return RegisterMutation(
+    @login_required
+    @superuser_required
+    def mutate(self, info, user_id):
+        ok = False
+        errors = None
+        try:
+            User.objects.get(id=user_id).delete()
+            ok = True
+        except ObjectDoesNotExist:
+            errors = ['El usuario no existe']
+            ok = False
+
+        return DeleteUserMutation(
             ok=ok,
-            user=user,
-            errors=form.errors or None,
+            errors=errors
+        )
+
+
+class GivePermissionsMutation(graphene.Mutation):
+    class Arguments:
+        user_id = graphene.ID()
+        permissions = graphene.String()
+
+    ok = graphene.Boolean()
+    errors = OutputObjectType()
+
+    @login_required
+    @superuser_required
+    def mutate(self, info, user_id, permissions):
+        ok = False
+        errors = None
+        try:
+            user_to_give_permissions = User.objects.get(id=user_id)
+            if permissions == 'staff':
+                user_to_give_permissions.is_staff = True
+            else:
+                user_to_give_permissions.is_superuser = True
+            user_to_give_permissions.save()
+            ok = True
+        except ObjectDoesNotExist:
+            errors = ['El usuario no existe']
+            ok = False
+
+        return GivePermissionsMutation(
+            ok=ok,
+            errors=errors
         )
 
 
@@ -109,6 +142,8 @@ class Mutations(graphene.ObjectType):
     delete_token_cookie = graphql_jwt.DeleteJSONWebTokenCookie.Field()
     verify_token = graphql_jwt.Verify.Field()
     upload_image = UploadImage.Field()
+    delete_user = DeleteUserMutation.Field()
+    give_permissions = GivePermissionsMutation.Field()
 
 
 class Query(graphene.ObjectType):

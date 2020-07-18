@@ -22,7 +22,6 @@ const Mutations = {
           }
         }
     `,
-
     uploadImage: `
             mutation ($image: Upload, $name: String!, $note: String!) {
                 uploadImage(image: $image, name: $name, note: $note) {
@@ -31,6 +30,22 @@ const Mutations = {
                 }
             }
         `,
+    deleteUser: `
+            mutation ($userId: ID!) {
+                deleteUser(userId: $userId) {
+                    ok
+                    errors
+                }
+            }
+    `,
+    givePermissions: `
+            mutation ($userId: ID!, $permissions: String! ) {
+                givePermissions(userId: $userId, permissions: $permissions) {
+                    ok
+                    errors
+                }
+            }
+    `,
 };
 
 export default Mutations;

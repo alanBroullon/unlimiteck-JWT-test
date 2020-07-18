@@ -1,28 +1,32 @@
 <div class="registerContainer">
-
-    <input class="input"
-           type="text"
-           placeholder="Nombre"
-           v-model="firstName"
-           required
-    >
-    <input class="input"
-           type="text"
-           placeholder="Apellido"
-           v-model="lastName"
-           required
-    >
-    <input class="input"
-           type="email"
-           placeholder="Email"
-           v-model="email"
-           required
-    >
-    <input class="input"
-           type="password"
-           placeholder="Contraseña"
-           v-model="password"
-           required
-    >
-    <button class="button" @click="register">Registrarse</button>
+    <form @submit.prevent="register">
+        <input class="input"
+               type="text"
+               placeholder="Nombre"
+               v-model="firstName"
+               required
+               minlength="1"
+        >
+        <input class="input"
+               type="text"
+               placeholder="Apellido"
+               v-model="lastName"
+               required
+               minlength="1"
+        >
+        <input class="input"
+               type="email"
+               placeholder="Email"
+               v-model="email"
+               required
+        >
+        <input class="input"
+               type="password"
+               placeholder="Contraseña"
+               v-model="password"
+               required
+               minlength="8"
+        >
+        <button class="button">Registrarse</button>
+    </form>
 </div>

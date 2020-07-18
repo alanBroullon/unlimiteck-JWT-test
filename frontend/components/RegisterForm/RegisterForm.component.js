@@ -5,14 +5,14 @@ import Mutations from "GraphQL/mutations";
 
 @Component()
 export default class RegisterForm extends Vue {
-    firstName = 'rolon';
-    lastName = 'brou';
-    email = 'rolon@gmail.com';
-    password = '123456789a';
+    firstName = '';
+    lastName = '';
+    email = '';
+    password = '';
     formErrors = ''
 
     /**
-     * Send user registration data, any vars can't be null, in case the email alrady exist it's not going to register.
+     * Send user registration data, any vars can't be null, in case the email already exist it's not going to register.
      */
     register() {
         axios.post(

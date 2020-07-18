@@ -1,18 +1,20 @@
 <div class="loginContainer">
+    <form  @submit.prevent="login()">
+        <input type="email"
+               required="true"
+               placeholder="Email"
+               v-model="userName"
+               class="input"
+        >
+        <input type="password"
+               required
+               placeholder="contraseña"
+               v-model="password"
+               class="input"
+        >
+        <p>{{formErrors}}</p>
+        <button class="button">Login</button>
+    </form>
 
-    <input type="text"
-           required
-           placeholder="nombre"
-           v-model="userName"
-           class="input"
-    >
-    <input type="password"
-           required
-           placeholder="contraseña"
-           v-model="password"
-           class="input"
-    >
-    <p>{{formErrors}}</p>
-    <button class="button" @click="login()">Login</button>
     <span>¿No estás registrado? <b class="toRegister" @click="showRegister">Registrate</b></span>
 </div>

@@ -16,6 +16,7 @@ const Queries = {
     getAllUsers: `
         query allUsers {
           allUsers {
+          id
             firstName
             lastName
             email
