@@ -1,1 +1,55 @@
 @import '../../styles/_index.scss';
+
+table {
+  width: 99%;
+  border-collapse: collapse;
+  border: 3px solid #464949;
+  margin: 10px 10px 0 10px;
+}
+
+table th {
+  text-transform: uppercase;
+  text-align: left;
+  background: #464949;
+  color: $PRMARYCOLOR;
+  padding: 8px;
+  min-width: 30px;
+}
+
+table td {
+  text-align: left;
+  padding: 8px;
+  border-right: 2px solid #464949;
+}
+
+table td:last-child {
+  border-right: none;
+}
+
+table tbody tr:nth-child(2n) td {
+  background: #aaaaaa;
+}
+
+
+.actionsTd {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.actionsText {
+  font-weight: bold;
+  cursor: pointer;
+
+  &.--delete {
+    color: red!important;
+  }
+
+  &.--staff {
+    color: yellow;
+  }
+
+  &.--superUser {
+    color: green;
+  }
+}

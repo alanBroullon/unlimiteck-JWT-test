@@ -1,9 +1,29 @@
 <div>
-<div v-for="user in userList">
-    <span>Nombre: {{user.firstName}}</span>
-    <span>apellido: {{user.lastName}}</span>
-    <span>email: {{user.email}}</span>
-    <span v-if="user.isSuperuser">Es super usario</span>
-    <span v-if="user.isStaff">Es staff</span>
+    <table>
+        <thead>
+        <tr>
+            <th v-for="column in gridColumns">{{column}}</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="userInformation in userList">
+            <td v-for="column in gridColumns">{{userInformation[column]}}</td>
+            <td class="actionsTd">
+                <span  @click="deleteUser(userInformation.id)"
+                        class="actionsText --delete">Eliminar</span>
+                <span v-if="!userInformation.isStaff && !userInformation.isSuperuser"
+                      class="actionsText --staff"
+                      @click="givePermissions(userInformation.id,'staff')"
+                >Permisos Staff</span>
+                <span v-if="!userInformation.isSuperuser"
+                      class="actionsText --superUser"
+                      @click="givePermissions(userInformation.id,'superUser')"
+                >Permisos Super usuario</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-</div>
+
+
