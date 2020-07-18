@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^$', backend.views.index),
     url(r'^login', backend.views.index),
     url(r'^home', backend.views.index),
+    url(r'^mis-notas', backend.views.index),
     url(r'^graphql', csrf_exempt(jwt_cookie(FileUploadGraphQLView.as_view(graphiql=True)))),
 
 ]

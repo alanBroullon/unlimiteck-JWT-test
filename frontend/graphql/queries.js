@@ -25,6 +25,16 @@ const Queries = {
 
         }
     `,
+    getUserNotes: `
+    query userNotes {
+      userNotes {
+        name
+        note
+        image    
+      }
+    }
+    `,
+
 };
 
 export default Queries;

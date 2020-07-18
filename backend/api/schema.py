@@ -7,6 +7,7 @@ from graphql_jwt.decorators import login_required, staff_member_required, superu
 from rest_framework.authtoken.models import Token
 from backend.api.forms import RegistrationForm, NoteFrom
 from graphene_file_upload.scalars import Upload
+from backend.models import UserNotes
 
 
 class OutputObjectType(graphene.Scalar):
@@ -20,19 +21,9 @@ class UserType(DjangoObjectType):
         model = User
 
 
-class UserLoggedType(graphene.ObjectType):
-    '''Type to know if have an user logged, in case its true return permissions'''
-    user_logged = graphene.Field(UserType)
-    anonymous_user = graphene.Boolean()
-
-    def resolve_anonymous_user(self, info):
-        if info.context.user:
-            return False
-        else:
-            return True
-
-    def resolve_user_logged(self, info):
-        return info.context.user
+class NotesType(DjangoObjectType):
+    class Meta:
+        model = UserNotes
 
 
 class TokenType(DjangoObjectType):
@@ -82,13 +73,10 @@ class RegisterMutation(graphene.Mutation):
     def mutate(self, info, fields):
         form = RegistrationForm(fields)
         form_valid = form.is_valid()
-        user = None
         if form_valid:
             form.save()
-        ok = bool(user and not errors)
         return RegisterMutation(
-            ok=ok,
-            user=user,
+            ok=False if form.errors else True,
             errors=form.errors or None,
         )
 
@@ -106,15 +94,20 @@ class Query(graphene.ObjectType):
     all_users = graphene.List(UserType)
     is_authenticated = graphene.Boolean()
     user_role = graphene.Field(UserType)
+    user_notes = graphene.List(NotesType)
+
+    def resolve_is_authenticated(self, info):
+        return info.context.user.is_authenticated()
 
     @login_required
     @superuser_required
     def resolve_all_users(self, info, **kwargs):
         return User.objects.all()
 
-    def resolve_is_authenticated(self, info):
-        return info.context.user.is_authenticated()
-
     @login_required
     def resolve_user_role(self, info):
         return info.context.user
+
+    @login_required
+    def resolve_user_notes(self, info):
+        return UserNotes.objects.filter(user=info.context.user)
