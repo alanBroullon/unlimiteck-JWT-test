@@ -1,4 +1,10 @@
-<div class="">
-<RegisterForm></RegisterForm>
-    <LoginForm></LoginForm>
+<div class="baseLoginContainer">
+    <div class="wrapper">
+        <RegisterForm v-if="showRegisterForm"
+                      @showRegistrationForm="displayRegistration"
+
+        ></RegisterForm>
+        <LoginForm v-if="!showRegisterForm"
+                   @showRegistrationForm="displayRegistration"></LoginForm>
+    </div>
 </div>

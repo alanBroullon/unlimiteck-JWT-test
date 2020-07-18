@@ -5,7 +5,7 @@ import Queries from "GraphQL/queries";
 
 @Component()
 export default class UserTable extends Vue {
-userList = []
+userList = [];
 
     mounted() {
         axios.post(
