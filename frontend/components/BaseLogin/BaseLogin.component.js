@@ -13,5 +13,11 @@ import Mutations from "GraphQL/mutations";
     }
 })
 export default class BaseLogin extends Vue {
+    showRegisterForm = false;
+
+    displayRegistration(){
+            this.showRegisterForm = !this.showRegisterForm;
+
+    }
 
 }

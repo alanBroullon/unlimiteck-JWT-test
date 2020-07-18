@@ -20,21 +20,6 @@ class UserType(DjangoObjectType):
         model = User
 
 
-class UserLoggedType(graphene.ObjectType):
-    '''Type to know if have an user logged, in case its true return permissions'''
-    user_logged = graphene.Field(UserType)
-    anonymous_user = graphene.Boolean()
-
-    def resolve_anonymous_user(self, info):
-        if info.context.user:
-            return False
-        else:
-            return True
-
-    def resolve_user_logged(self, info):
-        return info.context.user
-
-
 class TokenType(DjangoObjectType):
     class Meta:
         model = Token
@@ -82,6 +67,25 @@ class RegisterMutation(graphene.Mutation):
     def mutate(self, info, fields):
         form = RegistrationForm(fields)
         form_valid = form.is_valid()
+        if form_valid:
+            form.save()
+        return RegisterMutation(
+            ok=False if form.errors else True,
+            errors=form.errors or None,
+        )
+
+
+class DeleteUserMutation(graphene.Mutation):
+    class Arguments:
+        fields = graphene.Argument(RegisterFieldsType)
+
+    ok = graphene.Boolean()
+    user = graphene.Field(UserType)
+    errors = OutputObjectType()
+
+    def mutate(self, info, fields):
+        form = RegistrationForm(fields)
+        form_valid = form.is_valid()
         user = None
         if form_valid:
             form.save()
@@ -99,6 +103,7 @@ class Mutations(graphene.ObjectType):
     delete_token_cookie = graphql_jwt.DeleteJSONWebTokenCookie.Field()
     verify_token = graphql_jwt.Verify.Field()
     upload_image = UploadImage.Field()
+    # delete_user = graphene.DeleteUserMutation()
 
 
 class Query(graphene.ObjectType):

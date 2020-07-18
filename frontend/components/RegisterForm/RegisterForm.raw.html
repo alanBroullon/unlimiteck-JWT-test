@@ -1,8 +1,28 @@
-<div>
+<div class="registerContainer">
 
-    <input type="text" placeholder="Nombre" v-model="firstName">
-    <input type="text" placeholder="Apellido" v-model="lastName">
-    <input type="email" placeholder="Email" v-model="email">
-    <input type="password" placeholder="Contrase;a" v-model="password">
-    <button @click="register">Registrarse</button>
+    <input class="input"
+           type="text"
+           placeholder="Nombre"
+           v-model="firstName"
+           required
+    >
+    <input class="input"
+           type="text"
+           placeholder="Apellido"
+           v-model="lastName"
+           required
+    >
+    <input class="input"
+           type="email"
+           placeholder="Email"
+           v-model="email"
+           required
+    >
+    <input class="input"
+           type="password"
+           placeholder="Contraseña"
+           v-model="password"
+           required
+    >
+    <button class="button" @click="register">Registrarse</button>
 </div>
