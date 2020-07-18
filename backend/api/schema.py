@@ -81,6 +81,28 @@ class RegisterMutation(graphene.Mutation):
         )
 
 
+class DeleteUserMutation(graphene.Mutation):
+    class Arguments:
+        fields = graphene.Argument(RegisterFieldsType)
+
+    ok = graphene.Boolean()
+    user = graphene.Field(UserType)
+    errors = OutputObjectType()
+
+    def mutate(self, info, fields):
+        form = RegistrationForm(fields)
+        form_valid = form.is_valid()
+        user = None
+        if form_valid:
+            form.save()
+        ok = bool(user and not errors)
+        return RegisterMutation(
+            ok=ok,
+            user=user,
+            errors=form.errors or None,
+        )
+
+
 class Mutations(graphene.ObjectType):
     register = RegisterMutation.Field()
     token_auth = graphql_jwt.ObtainJSONWebToken.Field()

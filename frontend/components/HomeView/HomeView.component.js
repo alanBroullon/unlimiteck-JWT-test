@@ -31,6 +31,10 @@ export default class HomeView extends Vue {
         });
     }
 
+    /**
+     * Get the role to know with actions could do.
+     * @returns {String} the user role, could be null.
+     */
     get role() {
         return this.$store.getters.getUserRole;
 

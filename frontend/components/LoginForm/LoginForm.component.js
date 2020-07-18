@@ -7,6 +7,15 @@ import Mutations from "GraphQL/mutations";
 export default class LoginForm extends Vue {
     userName = '';
     password = '';
+    formErrors = ''
+
+
+    /**
+     * Emit event to BaseLogin component to show the registration component.
+     */
+    showRegister() {
+        this.$emit('showRegistrationForm');
+    }
 
     /**
      * Send username and password to the mutation, both vars can't be null.
@@ -21,6 +30,11 @@ export default class LoginForm extends Vue {
                     password: this.password
                 }
             }).then((response) => {
+            if (response.data.data.tokenAuth !== null) {
+                this.$router.push('/home');
+            } else {
+                this.formErrors = 'Este usuario no existe';
+            }
         });
     }
 }

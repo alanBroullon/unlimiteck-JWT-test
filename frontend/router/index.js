@@ -14,7 +14,7 @@ const AppRouter = new Router({
     routes: [
         {
             path: '/login',
-            name: 'basLogin',
+            name: 'baseLogin',
             component: BaseLogin,
         },
         {
