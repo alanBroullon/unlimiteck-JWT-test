@@ -22,9 +22,9 @@ const Mutations = {
           }
         }
     `,
-    uploadImage: `
+    saveNote: `
             mutation ($image: Upload, $name: String!, $note: String!) {
-                uploadImage(image: $image, name: $name, note: $note) {
+                saveNote(image: $image, name: $name, note: $note) {
                     ok
                     errors
                 }

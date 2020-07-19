@@ -45,7 +45,14 @@ export default class HomeView extends Vue {
      */
     get role() {
         return this.$store.getters.getUserRole;
+    }
 
+    /**
+     * Get the token to show them
+     * @returns {any} The token information
+     */
+    get tokenPayload(){
+        return this.$store.getters.getTokenPayload;
     }
 
 }
