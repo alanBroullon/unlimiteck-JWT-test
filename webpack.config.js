@@ -15,12 +15,14 @@ const devServerAddr = 'localhost';
 // Dev server port specified in server.js
 const devServerPort = 8001;
 
+const cdnUrl = 'https://storage.googleapis.com/alacarta-media';
+
 module.exports = {
     entry: ['./frontend/main.js'],
     output: {
         path: path.resolve(__dirname, '.' + distDir + '/'),
         filename: '[name]-[hash].js',
-        publicPath: distDir + '/',
+        publicPath: process.env.NODE_ENV !== 'production' ? distDir + '/' : cdnUrl + distDir + '/'
     },
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     plugins: [
