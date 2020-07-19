@@ -183,7 +183,7 @@ class Query(graphene.ObjectType):
     user_notes = graphene.List(NotesType)
 
     def resolve_is_authenticated(self, info):
-        return info.context.user.is_authenticated()
+        return info.context.user.is_authenticated
 
     @login_required
     def resolve_user_role(self, info):

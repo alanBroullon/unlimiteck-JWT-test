@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"/home/alan/Desktop/aLaCarta/env"
+$VIRTUAL_ENV = r"/home/alan/Desktop/unlimiteck/env"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]

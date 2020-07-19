@@ -1,4 +1,4 @@
-#!/home/alan/Desktop/aLaCarta/env/bin/python3
+#!/home/alan/Desktop/unlimiteck/env/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
