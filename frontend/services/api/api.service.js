@@ -1,22 +1,17 @@
 import axios from 'axios';
 
-export function getCookie (cname) {
-    const name = cname + '=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return '';
-}
-
 const api = {
+    getHeaders: () => {
+        const myHeaders = {
+            'Content-Type': 'application/json'
+        };
+
+        if (window.localStorage.getItem('token')) {
+            myHeaders['Authorization'] = `Token ${window.localStorage.getItem('token')}`
+        }
+
+        return myHeaders;
+    },
     encode: (obj) => {
         return Object.entries(obj).map(e =>
             `${encodeURIComponent(e[0])}=${encodeURIComponent(e[1])}`,

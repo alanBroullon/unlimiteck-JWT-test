@@ -4,7 +4,7 @@ import Header from 'Components/Header';
 
 @Component({
     components:{
-        Header
+        Header,
     }
 })
 export default class App extends Vue {

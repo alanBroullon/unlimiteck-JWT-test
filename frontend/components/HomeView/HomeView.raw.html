@@ -1,4 +1,15 @@
 <div>
-    <FileUploader></FileUploader>
-    <UserTable v-if="role === 'superUser'"></UserTable>
+    <button class="primaryButton"
+            @click="toggleModal"
+    >
+        Crear una nota
+    </button>
+    <UserTable
+            class="table"
+            v-if="role === 'superUser'"
+    ></UserTable>
+    <NoteModal v-if="showFileModal"
+                  @closeModal="toggleModal"
+    ></NoteModal>
+
 </div>

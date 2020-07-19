@@ -9,8 +9,11 @@ export default class RegisterForm extends Vue {
     lastName = '';
     email = '';
     password = '';
-    formErrors = ''
+    formErrors = '';
 
+    showLogin(){
+                this.$emit('showLoginForm');
+    }
     /**
      * Send user registration data, any vars can't be null, in case the email already exist it's not going to register.
      */
@@ -30,10 +33,9 @@ export default class RegisterForm extends Vue {
             }).then((response) => {
             const registerResponse = response.data.data.register;
             if (!registerResponse.ok) {
-                this.formErrors = registerResponse.errors[0].message;
+                this.formErrors = registerResponse.errors;
             } else {
-                this.$emit('showRegistrationForm');
-
+                this.$emit('showLoginForm');
             }
         });
     }

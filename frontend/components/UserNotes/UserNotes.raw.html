@@ -1,16 +1,18 @@
-<div>
-    <div class="notesViewContainer"
+<div class="notesViewContainer">
+    <div v-if="showNotes"
          v-for="notes in myNotesList"
+         class="note"
     >
-        <div class="note">
-            <div :style="{backgroundImage: `url(http://127.0.0.1:8000/media/${notes.image})`}"
-                 class="noteImage"></div>
-            <h2 class="title">
-                {{notes.name}}
-            </h2>
-            <div class="descriptionText">
-                {{notes.note}}
-            </div>
+        <div :style="{backgroundImage: `url(http://127.0.0.1:8000/media/${notes.image})`}"
+             class="noteImage"></div>
+        <h2 class="title">
+            {{notes.name}}
+        </h2>
+        <div class="descriptionText">
+            {{notes.note}}
         </div>
+    </div>
+    <div v-if="!showNotes">
+        NO HAY NOTAS
     </div>
 </div>

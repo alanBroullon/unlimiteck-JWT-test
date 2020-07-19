@@ -27,6 +27,9 @@
                required
                minlength="8"
         >
-        <button class="button">Registrarse</button>
+        <button class="primaryButton">Registrarse</button>
     </form>
+    <span>{{formErrors}}</span>
+    <span>¿Ya tenés una cuenta? <b class="toLogin" @click="showLogin">Logearse</b></span>
+
 </div>

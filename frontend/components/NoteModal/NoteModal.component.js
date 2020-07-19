@@ -4,11 +4,15 @@ import Mutations from "GraphQL/mutations";
 import axios from "axios";
 
 @Component()
-export default class FileUploader extends Vue {
+export default class NoteModal extends Vue {
     image = null;
     note = '';
     name = '';
 
+    /**
+     * Because you cant use two way binding we have to handle in a change.
+     * @param event
+     */
     dataImage(event) {
         this.image = event.target.files[0];
     }
@@ -25,18 +29,26 @@ export default class FileUploader extends Vue {
             name: this.name,
             note: this.note,
             image: null,
-        }
+        };
         const operations = JSON.stringify({query, variables});
         const map = {
             '0': ['variables.image']
         };
-        formData.append('operations', operations); // opreations is the query
+        formData.append('operations', operations);
         formData.append('map', JSON.stringify(map));
-        formData.append('0', this.image); // the key of the form 0 is the image
+        formData.append('0', this.image);
         axios.post(
             '/graphql',
             formData).then((response) => {
-        }).catch(() => {
-        })
+            this.closeModal();
+        });
     }
+
+    /**
+     * Emmit a event to HomeView to close the modal.
+     */
+    closeModal() {
+        this.$emit('closeModal');
+    }
+
 }

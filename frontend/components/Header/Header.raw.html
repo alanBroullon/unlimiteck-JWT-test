@@ -19,6 +19,7 @@
             </span>
             <div class="optionsContainer">
                 <router-link
+                        v-if="isHome"
                         class="header-action"
                         to="/"
                 >Home
@@ -27,11 +28,7 @@
                              class="header-action"
                              to="/mis-notas">Mis notas
                 </router-link>
-                <router-link @click.native="toggleMenu()"
-                             class="header-action"
-                             to="/lista-de-usuarios">Lista de usuarios
-                </router-link>
-                <button class="button" @click="logout">Logout</button>
+                <button class="secondaryButton" @click="logout">Logout</button>
             </div>
         </nav>
     </header>
