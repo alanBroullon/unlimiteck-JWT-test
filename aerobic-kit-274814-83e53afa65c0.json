@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "aerobic-kit-274814",
+  "private_key_id": "83e53afa65c036c69ab23605ffb16b428061a4e8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCqkF/zJWy4y31c\nptnYwYnho/J+fT+SvHtbWBmLNmX1xnqXmCmZozNKKLEvhvVRR7+Tx/nG2zhR/gEq\naFawQ/lf+WS+23Ya0OmWJhE7tE0QLe0hg6yNUlFIDSns36Mq/4iaZcrJdMX1ioFz\nM8Zw7Ct68ezBIMcbR30PMtmXnLjKEjJaecW35s9t118j5O7awRl6V0utQzrRdfJ/\nvdy+MSJZht7/0BxCJOCa8qxFUjlU8Gm+YsVn62ov/4Jq6KsJrP1k9PzfsrRKKRXA\nteOHOlLjHZbcK343+Bolc29XOjVz5087viaYaJGb110lfPve3SbQeIQfoWMrtXi8\n5JK20OU9AgMBAAECggEAGUAs+EPg293CRiJsa1bBqR46oue7bueI8p2xEGdCAnf7\nA7DS7cwXpoGuM41NCZav4bqv+3TOWnMabJMMTGWPyFnVRJ0cV714a1Jg6EAZzYyj\nB7xk4fofDuXmAEuebhns+QCbXCY1vVNfNTUjymloSXgB1xiZaWw0sziRtoyM3dtE\nSn69MUbMeDHrXrRyIhdOJ09xP60MXYqMHtIhFKGUl+aPQbfbewmrFU/hJssHEnry\nhJR0wLnJDRe8tvlZT4vUDp9Y3O8L4lHaIssYUbofKL1veoWoEiCeCWocCM7dIcDs\nKOgPvmbdRtBwNwgMhneYxZIE66z4rUSeXci+zr9sCQKBgQDetT33ILi0z1wP8aQD\nt5dKJhqPe3vwixToVr/L0wgBO2duns0Qpg5IMPRdHkCT2upSD8qdUD4nC5d4tHv8\nhHAYVaH7fq1g1T0c/pTUObKEYAEcqGUnBvSL6nmSyz7znCqjlokXt+C070tAAGGx\nYSzc/PL631L3JqfP3ABdTpnDaQKBgQDED6VluG7NOTyA1LwNJA/i2fNUKMytpb7h\n7O6iEoEFRKRMt9FPTgkfT6RISazxTVo3b7fUk8EVcg08o0zEcx7Wu9e2WcKzU2tB\n1gmgWXBGEbCqnvnc2NQBHNHqPj0oKpmB3/LzmGVpLexwv6WaXB91O5lCd3LU1/In\n3KWh9uBctQKBgB7ZUCoJOEyjZIc425VAOw6kVI2Hd1WMjmrYiVy8cKFrDxq9mH4z\n4kqRrWewpxVT/506XsCHuvRBoMuxhHMoDTbxtaxWkcGWCA8aHJeBHn9DpSPJF6ne\nRsWSxyBUUvX/rdBXK8pDSDcH5o6I/v9JDKPXzfh+MsnVau1Z9hr2pknxAoGAERBr\njNbojeQVaAEb/OjOmSfvDbwfVF3Ap1k/y8tgf1ziD+tPxF8+XANKgSAodTgOShTn\nIxFZFMzAai6sV8zNOlNPCwf08jaodypx3Arswqx3e+IqTRZyHUas3n5cREqw4aTk\nOF9jNCxTD90eRLkP49w0Epzi2bOR1/ZUVCxwiqECgYBYx49YbLJByD5f+wMw/oIG\nvuRIwREB0stbXBNgzkWLxaKj8thH0Xs9RQZL91inKY2fySnPalgAdYDw9901R4Bz\njcqFKMCsDFWL/x348WwglprBwq7nVKJKZ7CkKVX5U83S2EQeazWYeKD+WtRebaFI\nM7HJs/lkaguOR3pg4bohwQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "github-deploy@aerobic-kit-274814.iam.gserviceaccount.com",
+  "client_id": "100026430110109169278",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github-deploy%40aerobic-kit-274814.iam.gserviceaccount.com"
+}

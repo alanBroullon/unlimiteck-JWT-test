@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from datetime import timedelta
+import dj_database_url
+
+from google.oauth2 import service_account
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,12 +26,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'VERY_SECRET_KEY_THAT_YOU_SHOULD_CHANGE')
 
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'aerobic-kit-274814-83e53afa65c0.json')
+)
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 if DEBUG:
     ALLOWED_HOSTS.append('*')
+
+if DEBUG:
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 
 # Application definition
@@ -116,6 +127,10 @@ DATABASES = {
     }
 }
 
+if os.environ.get('DATABASE_URL') and not DEBUG:
+    DATABASES['default'] = dj_database_url.config(default=os.environ['DATABASE_URL'])
+
+
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -146,8 +161,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_URL = 'static'
+GS_FILE_OVERWRITE = False
+GS_PROJECT_ID = 'aerobic-kit-274814'
+GS_BUCKET_NAME = 'alacarta-media'
+STATIC_URL = 'https://storage.googleapis.com/alacarta-media/static/'
+STATIC_ROOT = 'static'
+MEDIA_URL = 'https://storage.googleapis.com/alacarta-media/media/'
+MEDIA_ROOT = "media"
+UPLOAD_ROOT = 'media/uploads/'
+DOWNLOAD_ROOT = os.path.join(BASE_DIR, "static/media/downloads")
+DOWNLOAD_URL = STATIC_URL + "media/downloads"
 
 if DEBUG:
     STATIC_ROOT = 'static/'

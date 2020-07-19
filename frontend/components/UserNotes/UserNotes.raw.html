@@ -3,7 +3,8 @@
          v-for="notes in myNotesList"
          class="note"
     >
-        <div :style="{backgroundImage: `url(http://127.0.0.1:8000/media/${notes.image})`}"
+<!-- if in development mode change to this url http://127.0.0.1:8000/media/-->
+        <div :style="{backgroundImage: `url(https://storage.googleapis.com/alacarta-media/${notes.image})`}"
              class="noteImage"></div>
         <h2 class="title">
             {{notes.name}}
