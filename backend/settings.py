@@ -32,7 +32,7 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.environ.get('DJANGO_DEBUG') == 'True' else False
 ALLOWED_HOSTS = ['*']
 
 if DEBUG:
