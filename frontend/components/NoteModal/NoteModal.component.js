@@ -22,9 +22,9 @@ export default class NoteModal extends Vue {
      * information to put in the request header to capture in the back.
      * For more information you can visit the following link to stack overflow: https://bit.ly/3fFsRFj
      */
-    uploadImage() {
+    saveNote() {
         let formData = new FormData();
-        const query = Mutations.uploadImage;
+        const query = Mutations.saveNote;
         const variables = {
             name: this.name,
             note: this.note,

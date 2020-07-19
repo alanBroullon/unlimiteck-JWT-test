@@ -38,7 +38,7 @@ class RegisterFieldsType(graphene.InputObjectType):
     password = graphene.String()
 
 
-class UploadImage(graphene.Mutation):
+class SaveNoteMutation(graphene.Mutation):
     class Arguments:
         name = graphene.String()
         note = graphene.String()
@@ -67,7 +67,7 @@ class UploadImage(graphene.Mutation):
         if form.is_valid():
             form.process()
 
-        return UploadImage(ok=False if form.errors else True,
+        return SaveNoteMutation(ok=False if form.errors else True,
                            errors=form.errors if form.errors else None)
 
 
@@ -170,7 +170,7 @@ class Mutations(graphene.ObjectType):
     delete_token_cookie = graphql_jwt.DeleteJSONWebTokenCookie.Field()
     verify_token = graphql_jwt.Verify.Field()
     register = RegisterMutation.Field()
-    upload_image = UploadImage.Field()
+    save_note = SaveNoteMutation.Field()
     delete_user = DeleteUserMutation.Field()
     give_permissions = GivePermissionsMutation.Field()
 

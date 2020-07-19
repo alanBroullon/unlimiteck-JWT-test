@@ -31,9 +31,10 @@ export default class LoginForm extends Vue {
                 }
             }).then((response) => {
             if (response.data.data.tokenAuth !== null) {
-                this.$router.push('/home');
+                this.$store.commit('setTokenPayload', response.data.data);
+                this.$router.push('/');
             } else {
-                this.formErrors = 'Este usuario no existe';
+                this.formErrors = 'Usuario o contraseña; incorrectos';
             }
         });
     }

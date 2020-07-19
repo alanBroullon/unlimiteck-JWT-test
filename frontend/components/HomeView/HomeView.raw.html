@@ -9,7 +9,11 @@
             v-if="role === 'superUser'"
     ></UserTable>
     <NoteModal v-if="showFileModal"
-                  @closeModal="toggleModal"
+               @closeModal="toggleModal"
     ></NoteModal>
-
+    <div v-if="tokenPayload">
+        <h2>Mi token</h2>
+        <p>Este token va a ser utilizado por cada request que hagas al servidor.</p>
+        <pre>{{tokenPayload}}</pre>
+    </div>
 </div>
