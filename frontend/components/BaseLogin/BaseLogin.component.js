@@ -15,9 +15,11 @@ import Mutations from "GraphQL/mutations";
 export default class BaseLogin extends Vue {
     showRegisterForm = false;
 
+    /**
+     * Show register component, events can call this function.
+     */
     displayRegistration(){
             this.showRegisterForm = !this.showRegisterForm;
-
     }
 
 }

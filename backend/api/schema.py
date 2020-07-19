@@ -49,7 +49,16 @@ class UploadImage(graphene.Mutation):
 
     @login_required
     def mutate(self, info, name, note, image=None):
-        form = EditItemForm({
+        """
+        Upload a note with a image file. The logic is encapsulated in the form.
+        :param info: Used to get the actual user logged.
+        :param name: String with the name of the note, cant be null.
+        :param note: String with the note, cant be null.
+        :param image: Graphene scalar to upload files.
+        :return:  UploadImage class with a boolean in case the operations is without errors, and errors with the
+        validation errors form.
+        """""
+        form = NoteFrom({
             'image': image,
             'name': name,
             'note': note,
@@ -70,13 +79,28 @@ class RegisterMutation(graphene.Mutation):
     errors = OutputObjectType()
 
     def mutate(self, info, fields):
+        """
+        Register a new user, the logic is encapsulated in the form.
+        :param info:
+        :param fields Register type fields
+        :return: RegistrationMutation class with a boolean in case the operations is without errors, and errors with the
+        validation errors form.
+        """
+        ok = False
+        errors = None
         form = RegistrationForm(fields)
         form_valid = form.is_valid()
         if form_valid:
             form.save()
+            ok = True
+        else:
+            # Bad practice sorry
+            ok = False
+            errors = form.errors['email'][0]
+
         return RegisterMutation(
-            ok=False if form.errors else True,
-            errors=form.errors or None,
+            ok=ok,
+            errors=errors or None,
         )
 
 
@@ -90,6 +114,11 @@ class DeleteUserMutation(graphene.Mutation):
     @login_required
     @superuser_required
     def mutate(self, info, user_id):
+        """
+        Delete the selected user
+        :param info: 
+        :param user_id: the user to be deleted, cant be null.
+        """""
         ok = False
         errors = None
         try:
@@ -137,10 +166,10 @@ class GivePermissionsMutation(graphene.Mutation):
 
 
 class Mutations(graphene.ObjectType):
-    register = RegisterMutation.Field()
     token_auth = graphql_jwt.ObtainJSONWebToken.Field()
     delete_token_cookie = graphql_jwt.DeleteJSONWebTokenCookie.Field()
     verify_token = graphql_jwt.Verify.Field()
+    register = RegisterMutation.Field()
     upload_image = UploadImage.Field()
     delete_user = DeleteUserMutation.Field()
     give_permissions = GivePermissionsMutation.Field()
@@ -157,14 +186,14 @@ class Query(graphene.ObjectType):
         return info.context.user.is_authenticated()
 
     @login_required
-    @superuser_required
-    def resolve_all_users(self, info, **kwargs):
-        return User.objects.all()
-
-    @login_required
     def resolve_user_role(self, info):
         return info.context.user
 
     @login_required
     def resolve_user_notes(self, info):
         return UserNotes.objects.filter(user=info.context.user)
+
+    @login_required
+    @superuser_required
+    def resolve_all_users(self, info, **kwargs):
+        return User.objects.all()

@@ -1,18 +1,26 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import UserTable from "Components/UserTable";
-import FileUploader from "Components/FileUploader";
+import NoteModal from "Components/NoteModal";
 import Queries from "GraphQL/queries";
 import axios from "axios";
 
 @Component({
     components: {
-        FileUploader,
+        NoteModal,
         UserTable,
     }
 })
 export default class HomeView extends Vue {
     image = null;
+    showFileModal = false;
+
+    /**
+     * Open/Close file upload modal.
+     */
+    toggleModal() {
+        this.showFileModal = !this.showFileModal;
+    }
 
     /**
      * Verify the user role to know the actions can do.

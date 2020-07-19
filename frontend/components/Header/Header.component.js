@@ -11,6 +11,10 @@ export default class Header extends Vue {
         this.showMenu = !this.showMenu;
     }
 
+    get isHome() {
+        return this.$route.name !== 'home' ? true : false;
+    }
+
     /**
      * Delete the auth token and redirect to the login view.
      */

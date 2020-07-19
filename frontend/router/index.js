@@ -13,23 +13,6 @@ const AppRouter = new Router({
     mode: 'history',
     routes: [
         {
-            path: '/login',
-            name: 'baseLogin',
-            component: BaseLogin,
-        },
-        {
-            path: '/home',
-            name: 'home',
-            component: HomeView,
-            beforeEnter: beforeEnter,
-        },
-        {
-            path: '/mis-notas',
-            name: 'userNotes',
-            component: UserNotes,
-            beforeEnter: beforeEnter,
-        },
-        {
             path: '/',
             name: 'app',
             component: App,
@@ -50,6 +33,23 @@ const AppRouter = new Router({
                     next();
                 });
             },
+        },
+        {
+            path: '/login',
+            name: 'baseLogin',
+            component: BaseLogin,
+        },
+        {
+            path: '/home/',
+            name: 'home',
+            component: HomeView,
+            beforeEnter: beforeEnter,
+        },
+        {
+            path: '/mis-notas/',
+            name: 'userNotes',
+            component: UserNotes,
+            beforeEnter: beforeEnter,
         },
     ]
 });

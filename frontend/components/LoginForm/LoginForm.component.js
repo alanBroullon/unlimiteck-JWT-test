@@ -7,7 +7,7 @@ import Mutations from "GraphQL/mutations";
 export default class LoginForm extends Vue {
     userName = '';
     password = '';
-    formErrors = ''
+    formErrors = '';
 
 
     /**

@@ -57,6 +57,11 @@ export default class UserTable extends Vue {
         });
     }
 
+    /**
+     * Update permission to the selected user.
+     * @param userId The id of the user, cant be null.
+     * @param permissions The permission type to give to the user
+     */
     givePermissions(userId, permissions) {
         axios.post(
             '/graphql',

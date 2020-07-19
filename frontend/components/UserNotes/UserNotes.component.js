@@ -15,8 +15,11 @@ export default class UserNotes extends Vue {
             {
                 query: Queries.getUserNotes
             }).then((response) => {
-
-                this.myNotesList = response.data.data.userNotes;
+            this.myNotesList = response.data.data.userNotes;
         });
+    }
+
+    get showNotes() {
+        return this.myNotesList.length > 0 ? true : false;
     }
 }

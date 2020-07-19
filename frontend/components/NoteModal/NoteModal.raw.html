@@ -1,0 +1,27 @@
+<div class="fileUploaderContainer">
+    <div class="wrapper">
+        <h2>Nueva nota</h2>
+        <input type="text"
+               class="input"
+               placeholder="Nombre"
+               v-model="name"
+               maxlength="250"
+        >
+        <textarea
+                v-model="note"
+                cols="50"
+                rows="10"
+                placeholder="Nota"
+                class="textArea"
+                maxlength="250"
+        ></textarea>
+        <input type="file"
+               id="img"
+               name="image"
+               accept="image/*"
+               @change="dataImage"
+        >
+        <button @click="uploadImage" class="primaryButton">Crear nota</button>
+        <button @click="closeModal" class="secondaryButton">Cancelar</button>
+    </div>
+</div>
